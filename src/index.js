@@ -4,6 +4,7 @@
         fs = require('fs-extra'),
         http = require('http'),
         Express = require('express'),
+        bodyParser = require('body-parser'),
         handlebarsLoader = require('madscience-handlebarsloader'),
         settings = require('./lib/settings'),
         express = Express()
@@ -13,6 +14,8 @@
     await fs.ensureDir(settings.logs)
     
     express.set('json spaces', 4)
+    express.use(bodyParser.urlencoded({ }))
+    express.use(bodyParser.json())
 
     // ready to start - load/start all the things
     const path = require('path'),
