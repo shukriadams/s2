@@ -7,13 +7,15 @@ RUN apt-get update \
     && apt-get install wget -y \
     && apt-get install git -y \
     && apt-get install curl -y \
-    && wget -O /tmp/nodejs.deb https://deb.nodesource.com/node_12.x/pool/main/n/nodejs/nodejs_12.20.2-deb-1nodesource1_amd64.deb \
-    && sh -c 'dpkg -i /tmp/nodejs.deb' \
+    && apt-get install python3-minimal -y \
+    && apt-get install python3-pip -y \
+    && curl -s -O https://deb.nodesource.com/node_12.x/pool/main/n/nodejs/nodejs_12.20.2-deb-1nodesource1_amd64.deb \
+    && dpkg -i nodejs_12.20.2-deb-1nodesource1_amd64.deb \
+    && rm nodejs_12.20.2-deb-1nodesource1_amd64.deb \
     && mkdir -p /var/app \
     && useradd -u 1000 app \
     && chmod 700 -R /var/app \
-    && chown -R app /var/app \
-    && unlink /tmp/nodejs.deb
+    && chown -R app /var/app 
 
 COPY ./build.tar.gz /tmp
 # strips the first two folders when unzipping, getting rid of /tmp/build

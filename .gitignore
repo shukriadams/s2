@@ -3,3 +3,4 @@ vagrant/virtio/.vagrant
 src/package-lock.json
 src/data
 build/.clone
+build/build.tar.gz
