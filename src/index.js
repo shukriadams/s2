@@ -41,5 +41,4 @@
 
     let status = `http-filestore : Listening on port ${settings.port}`
     console.log(status)
-
 })()
