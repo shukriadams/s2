@@ -8,7 +8,7 @@ BUILD=0
 while [ -n "$1" ]; do 
     case "$1" in
     --build) BUILD=1 ;;
-    --dockerpush) DOCKERPUSH=1 ;;
+    --push) DOCKERPUSH=1 ;;
     --test) TEST=1 ;;
 
     esac 
