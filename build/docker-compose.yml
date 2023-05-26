@@ -1,0 +1,8 @@
+version: "2"
+services:
+  http-filestore-test:
+    image: shukriadams/http-filestore:latest
+    container_name: http-filestore-test
+    restart: unless-stopped
+    ports:
+    - "4070:4060"
