@@ -70,7 +70,7 @@ bucket:
                 bucketConfig = settings.buckets[bucket]
 
             if (!bucketConfig)
-                return res.end('bucket not defined')                
+                return res.end(`bucket ${bucket} not defined`)
             
             // if bucket defines key, ensure key has been passed in header 
             if (bucketConfig.secret){
