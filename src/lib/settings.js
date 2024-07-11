@@ -31,7 +31,8 @@ if (settings === null){
 
         settings.buckets[bucketName] = Object.assign({
             name: bucketName,
-            secret : null            
+            secret : null,
+            mime : false
         }, settings.buckets[bucketName])
     }
 }
