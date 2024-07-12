@@ -114,10 +114,67 @@ bucket:
 
             const directoryPath = path.dirname(storePath)
 
-            await fs.mkdir(directoryPath, { recursive: true });
+            try {
+                await fs.mkdir(directoryPath, { recursive: true })
+            } 
+            catch (ex) {
+                if (ex.code && ex.code === 'EEXIST'){
+                    res.status(400)
+                    return res.end('cannot create requested path, likely because it collides with existing file')
+                } else
+                    throw ex
+            }
 
             req.pipe(fs.createWriteStream(storePath, {flags:'a'})) 
             res.end('file written')
+
+        } catch(ex){
+            res.end(JSON.stringify(ex))
+            console.log(ex)
+        }
+    })
+
+    /**
+     * 
+     */
+    express.delete('/file/:bucket/:path(*)', async (req, res) => {
+        try {
+
+            // ensure that bucket is allowed
+            const bucket = req.params.bucket,
+                bucketConfig = settings.buckets[bucket]
+
+            if (!bucketConfig)
+                return res.end(`bucket ${bucket} not defined`)
+            
+            // if bucket defines key, ensure key has been passed in header 
+            if (bucketConfig.secret){
+                let authPassed = false
+                const header = req.headers.authorization || ''
+                if (header){
+                    const token = header.split(/\s+/).pop() || ''
+                    if (token){
+                        const tokenDecoded = Buffer.from(token, 'base64').toString()
+                        if (token === bucketConfig.secret || tokenDecoded === bucketConfig.secret)
+                            authPassed = true
+                            
+                    }
+                }
+
+                if (!authPassed)
+                    return res.end('auth fail')
+            }
+
+            // exit if file exists
+            const storePath = path.join(settings.store, bucket, req.params.path)
+            if (!await fs.exists(storePath)){
+                res.status(404)
+                return res.end('file not found')
+            }
+
+            await fs.remove(storePath)
+
+            res.end('file deleted')
 
         } catch(ex){
             res.end(ex)

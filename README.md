@@ -1,8 +1,10 @@
-# http-filestore
+# S2
 
-Put, list and get files via HTTP with cURL.
+Not quite as good as S3. Put, list and get files from buckets, via HTTP, with cURL.
 
 ## Commands
+
+Authorization header is required if Bucket has auth enabled.
 
 Add file
 
@@ -16,3 +18,11 @@ List files
 Read file back
 
     curl -o myfile -H "Authorization: Bearer 12345" http://localhost:4060/file/mybucket/in/bucket23
+
+Delete file back
+
+    curl -X DELETE -H "Authorization: Bearer 12345" http://localhost:4060/file/mybucket/in/bucket23
+
+## View from browser
+
+Add `mime:true` to bucket config to allow browser get. Mime file support is limited.
