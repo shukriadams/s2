@@ -1,6 +1,8 @@
 # S2
 
-Not quite as good as S3. Put, list and get files from buckets, via HTTP, with cURL.
+S2 is like S3, except much less. It's buckets of files, over vanilla HTTP REST commands. S2 is for internal/private 
+networks only, and is intended for individuals, small teams, devops systems etc that need easy REST without Boto, 
+XML or any of the over-complicated rituals S3 demands. S2 SHOULD NOT BE EXPOSED TO THE PUBLIC INTERNET.
 
 ## Commands
 

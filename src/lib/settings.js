@@ -23,6 +23,7 @@ if (settings === null){
         port: 4060,
         store : './data/store',
         logs: './data/logs',
+        name : 'S2',
         buckets : {}
     }, settings)
 

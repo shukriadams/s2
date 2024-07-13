@@ -1,5 +1,8 @@
-buckets : {
-    mybucket: {
+name: My S2 Instance 
+
+buckets:
+    mybucket:
       mime: true
-    }
-}
+    myprivatebucket:
+      mime: true
+      secret: mykey

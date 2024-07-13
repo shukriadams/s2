@@ -1,7 +1,7 @@
 {
-    "name": "http-filestore",
+    "name": "s2",
     "version": "0.0.1",
-    "description": "upload and download files with vanilla http",
+    "description": "Files in buckets, over simple HTTP.",
     "private": false,
     "author": "shukri.adams@gmail.com",
     "license": "MIT",
@@ -18,18 +18,14 @@
         "handlebars-layouts": "3.1.4",
         "handlebars": "4.7.7",
         "body-parser": "1.18.3",
-        "netcat": "1.5.0",
         "jsonfile": "5.0.0",
         "s-ago": "2.0.1",
         "js-yaml": "3.13.1",
         "express": "4.17.1",
         "minimist": "1.2.5",
-        "sanitize-filename": "1.6.3",
         "fs-extra": "8.1.0",
         "urljoin": "0.1.5",
         "winston-daily-rotate-file": "1.7.2",
-        "smtp-client": "0.4.0",
-        "simple-ssh": "1.1.0",
         "dotenv": "9.0.2",
         "timebelt": "https://github.com/shukriadams/timebelt.git#0.1.16",
         "winston-wrapper": "https://github.com/shukriadams/winston-wrapper.git#0.1.0",
@@ -38,11 +34,6 @@
         "madscience-handlebarsloader": "https://github.com/shukriadams/madscience-handlebarsloader.git#0.0.9"
     },
     "devDependencies": {
-        "glob": "7.1.6",
-        "chance": "1.1.7",
-        "lodash.clonedeep": "4.5.0",
-        "nyc": "15.1.0",
-        "madscience-node-assert": "https://github.com/shukriadams/node-assert.git#0.0.7",
-        "mocha": "7.1.0"
+
     }
 }
