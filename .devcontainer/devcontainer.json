@@ -1,0 +1,15 @@
+{
+    "name": "node20",
+
+    // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+    "image": "shukriadams/node20build:0.0.1",
+  
+    // Use 'forwardPorts' to make a list of ports inside the container available locally.
+    // "forwardPorts": [ ]
+    "customizations": {
+        // Configure properties specific to VS Code.
+        "vscode": {
+
+        }
+    }
+}
