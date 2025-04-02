@@ -4,13 +4,14 @@ set -e
 DOCKERPUSH=0
 TEST=0
 BUILD=0
+COMPOSE="docker compose"
 
 while [ -n "$1" ]; do 
     case "$1" in
     --build) BUILD=1 ;;
     --push) DOCKERPUSH=1 ;;
     --test) TEST=1 ;;
-
+    --legacy-compose|-l) COMPOSE="docker-compose" ;;
     esac 
     shift
 done
@@ -50,8 +51,8 @@ if [ $TEST -eq 1 ]; then
     echo "Testing ... "
 
     # test build
-    docker-compose -f docker-compose.yml down 
-    docker-compose -f docker-compose.yml up -d 
+    $COMPOSE -f docker-compose.yml down 
+    $COMPOSE -f docker-compose.yml up -d 
     
     # give container a chance to start
     sleep 5 
@@ -63,7 +64,7 @@ if [ $TEST -eq 1 ]; then
         exit 1
     fi
 
-    docker-compose -f docker-compose.yml down 
+    $COMPOSE -f docker-compose.yml down 
     echo "container test passed with status ${STATUS}"
 fi
 
