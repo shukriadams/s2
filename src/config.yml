@@ -1,5 +1,0 @@
-buckets : {
-    mybucket: {
-      mime: true
-    }
-}

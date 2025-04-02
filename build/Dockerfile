@@ -12,16 +12,16 @@ RUN apt-get update \
     && curl -s -O https://deb.nodesource.com/node_12.x/pool/main/n/nodejs/nodejs_12.20.2-deb-1nodesource1_amd64.deb \
     && dpkg -i nodejs_12.20.2-deb-1nodesource1_amd64.deb \
     && rm nodejs_12.20.2-deb-1nodesource1_amd64.deb \
-    && mkdir -p /var/app \
-    && useradd -u 1000 app \
-    && chmod 700 -R /var/app \
-    && chown -R app /var/app 
+    && mkdir -p /var/s2 \
+    && useradd -u 1000 s2 \
+    && chmod 700 -R /var/s2 \
+    && chown -R s2 /var/s2 
 
 COPY ./build.tar.gz /tmp
 # strips the first two folders when unzipping, getting rid of /tmp/build
-RUN tar -xzvf /tmp/build.tar.gz -C /var/app --strip 2
+RUN tar -xzvf /tmp/build.tar.gz -C /var/s2 --strip 2
 RUN rm /tmp/build.tar.gz
 
-USER app
+USER s2
 
-CMD cd /var/app && npm start
+CMD cd /var/s2 && npm start

@@ -23,7 +23,13 @@ if (settings === null){
         port: 4060,
         store : './data/store',
         logs: './data/logs',
-        buckets : {}
+        name : 'S2',
+        buckets : {},
+        mimeTypes : {
+            'jpg|jpeg|' : 'image/jpeg',
+            'png|' : 'image/png'
+        }
+
     }, settings)
 
     
@@ -32,7 +38,7 @@ if (settings === null){
         settings.buckets[bucketName] = Object.assign({
             name: bucketName,
             secret : null,
-            mime : false
+            visible: false
         }, settings.buckets[bucketName])
     }
 }

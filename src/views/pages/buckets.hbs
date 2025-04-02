@@ -1,0 +1,11 @@
+{{#extend "layout"}}
+    {{#content "body"}}
+        <ol>
+            {{#each buckets}}
+                <li>
+                    <a href="/list/{{this}}">{{this}}</a>
+                </li>     
+            {{/each}}
+        </ol>
+    {{/content}}
+{{/extend}}

@@ -1,0 +1,66 @@
+{{#extend "layout"}}
+    {{#content "body"}}
+        <p>
+            This is an S2 instance. S2 is like S3, except much less.
+            It's buckets of files, over vanilla HTTP REST commands. S2 is for internal/private networks only, and is
+            intended for individuals, small teams, devops systems etc that need easy REST without Boto, XML or any of the 
+            over-complicated rituals S3 demands. S2 SHOULD NOT BE EXPOSED TO THE PUBLIC INTERNET.
+        </p>
+
+        <a href="/buckets">Available buckets</a>
+
+        <h2>How to use</h2>
+        <ol>
+            <li>
+                <p>
+                    Spin up an S2 instance with Docker, define some buckets in the config file. See project README for more.
+                </p>
+            </li>
+            <li>
+                <p>
+                    Add a file with 
+                    <code>
+                        curl -X POST "Content-Type: application/octet-stream" -T ./myfile.txt http://localhost:4060/file/mybucket/some/path/myfile.txt
+                    </code>
+                </p>
+            </li>
+            <li>
+                <p>
+                    List files (as JSON) with
+                    <code>
+                        curl http://localhost:4060/list/mybucket
+                    </code>
+                </p>
+            </li>
+            <li>
+                <p>
+                    Retrieve a file with
+                    <code>
+                        curl -o myfile http://localhost:4060/file/mybucket/some/path/myfile.txt
+                    </code>
+                    You can also link to a file from any browser at 
+                    <code>
+                        http://localhost:4060/file/mybucket/some/path/myfile.txt
+                    </code>
+                    if a bucket has MIME enabled.
+                </p>
+            </li>
+            <li>
+                <p>
+                    Delete file with
+                    <code>
+                        curl -X DELETE http://localhost:4060/file/mybucket/some/path/myfile.txt
+                    </code>
+                </p>
+            </li>
+            <li>
+                <p>
+                    If a bucket is protected with a passkey, add the key as an auth header to all calls to that bucket, egs
+                    <code>
+                        curl -H "Authorization: Bearer mykey" http://localhost:4060/list/mybucket
+                    </code>
+                </p>
+            </li>     
+        </ol>
+    {{/content}}
+{{/extend}}
