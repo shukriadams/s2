@@ -35,6 +35,7 @@
         pages : `${__dirname}/views/pages`,
         partials : `${__dirname}/views/partials`,
     })
+    express.use(Express.static('./content'))
 
     server = http.createServer(express)
     server.listen(settings.port)

@@ -5,12 +5,11 @@ module.exports = express => {
         settings = require('./../lib/settings')
 
     /*
+    Lists files in a bucket
 
     bucket: 
         name
         secret
-
-
     */
     express.get('/list/:bucket', async (req, res) => {
         try {
@@ -39,7 +38,10 @@ module.exports = express => {
                     return res.end('auth fail')
             }
             
-            const bucketPath = path.join(settings.store, bucket),
+            let bucketPath = path.join(settings.store, bucket), 
+                files = []
+
+            if (await fs.exists(bucketPath))
                 files = await fsUtils.readFilesUnderDir(bucketPath)
 
             // strip path down past bucket name, we don't need to expose this
@@ -47,10 +49,14 @@ module.exports = express => {
             for (let i = 0 ; i < files.length ; i ++)
                 files[i] = files[i].split(path.sep).slice(rootLength).join(path.sep)
 
-            res.json(files)
+            res.json({
+                items : files,
+                page: 0,
+                total : files.length
+            })
             
         } catch(ex){
-            res.end(ex)
+            res.end(ex.messsage)
             console.log(ex)
         }
     })

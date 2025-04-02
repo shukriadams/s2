@@ -2,11 +2,7 @@ module.exports = express => {
 
     const fs = require('fs-extra'),
         path = require('path'),
-        settings = require('./../lib/settings'),
-        mimeTypes = {
-            'jpg|jpeg|' : 'image/jpeg',
-            'png|' : 'image/png'
-        }
+        settings = require('./../lib/settings')
 
 /*
 
@@ -52,16 +48,14 @@ bucket:
             let mimeType = 'application/octet-stream'
 
             // try to find a better mime type if bucket supports it and file type can be mapped
-            if (bucketConfig.mime){
-                let extension = path.extname(storePath)
-                if (extension && extension.startsWith('.'))
-                    extension = extension.substr(1)
+            let extension = path.extname(storePath)
+            if (extension && extension.startsWith('.'))
+                extension = extension.substr(1)
 
-                if (extension)
-                    for (let def of Object.keys(mimeTypes))
-                        if (def && def.includes(`${extension}|`))
-                            mimeType = mimeTypes[def]
-            }
+            if (extension)
+                for (let def of Object.keys(settings.mimeTypes))
+                    if (def && def.includes(`${extension}|`))
+                        mimeType = settings.mimeTypes[def]
 
             res.setHeader('content-type', mimeType)
             fs.createReadStream(storePath).pipe(res)

@@ -24,7 +24,12 @@ if (settings === null){
         store : './data/store',
         logs: './data/logs',
         name : 'S2',
-        buckets : {}
+        buckets : {},
+        mimeTypes : {
+            'jpg|jpeg|' : 'image/jpeg',
+            'png|' : 'image/png'
+        }
+
     }, settings)
 
     
@@ -33,7 +38,7 @@ if (settings === null){
         settings.buckets[bucketName] = Object.assign({
             name: bucketName,
             secret : null,
-            mime : false
+            visible: false
         }, settings.buckets[bucketName])
     }
 }
