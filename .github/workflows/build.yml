@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: builds
-        run: cd build && sh ./build.sh --build --test --push
+        run: cd build && sh ./build.sh --build --test --push --legacy-compose
         env:
             DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
             DOCKER_USER: ${{ secrets.DOCKER_USER }}
